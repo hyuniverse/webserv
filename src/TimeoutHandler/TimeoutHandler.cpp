@@ -87,12 +87,16 @@ void TimeoutHandler::checkTimeouts(EventHandler& eventHandler, Demultiplexer& re
         } else if (client->isReceiving()) {
             // Request Timeout일 경우 HTTP 408 Request Timeout 처리
             eventHandler.handleError(408, *client);
+            reactor.addWriteEvent(fd);
+        } else {
+            reactor.removeSocket(fd);
+            clientManager.removeClient(fd);
         }
 
         // client 정보 삭제 및 정리
         removeConnection(fd, it);
-        reactor.removeSocket(fd);
-        clientManager.removeClient(fd);
+        // reactor.removeSocket(fd);
+        // clientManager.removeClient(fd);
     }
 }
 

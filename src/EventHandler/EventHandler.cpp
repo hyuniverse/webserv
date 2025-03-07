@@ -90,6 +90,7 @@ EnumSesStatus EventHandler::handleClientReadEvent(ClientSession& clientSession) 
         // Http 상태 코드(에러)를 가져와서 에러 응답 전송
         int statusCode = clientSession.getErrorStatusCode();
         handleError(statusCode, clientSession);
+        sendResponse(clientSession);
         status = CONNECTION_CLOSED;
     } 
 
@@ -121,6 +122,8 @@ std::string EventHandler::handleRedirection(const RequestConfig& conf) {
 EnumSesStatus EventHandler::handleClientWriteEvent(ClientSession& clientSession) {
     // 클라이언트에게 응답 전송을 시도하고, 전송 결과 상태를 반환
     EnumSesStatus status = sendResponse(clientSession);
+    if (clientSession.getErrorStatusCode() == REQUEST_TIMEOUT) 
+        status = CONNECTION_CLOSED;
     
     return status;
 }
@@ -137,5 +140,5 @@ void EventHandler::handleError(int statusCode, ClientSession& clientSession) {
     clientSession.setWriteBuffer(errorMsg);
 
     // 클라이언트에게 에러 응답 전송
-    sendResponse(clientSession);
+    // sendResponse(clientSession);
 }

@@ -72,3 +72,5 @@ KqueueDemultiplexer는 파일 디스크립터를 모니터링하기 위해 macOS
 - kqueue 디스크립터(`kq_`)
 - 모니터링된 이벤트 목록(`eventList_`)
 - 변경될 이벤트 목록(`changedEvents_`)
+
+[메인 README로 돌아가기](../../README.md)

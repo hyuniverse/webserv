@@ -86,3 +86,5 @@ TimeoutHandler는 효율적인 타임아웃 관리를 위해 여러 데이터 �
 2. 이 타임아웃은 이벤트 멀티플렉서의 대기 함수에서 사용
 3. 이벤트 처리 후 ServerManager는 `checkTimeouts()` 호출
 4. 만료된 연결이 적절하게 처리됨
+
+[메인 README로 돌아가기](../../README.md)

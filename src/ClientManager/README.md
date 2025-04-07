@@ -56,3 +56,5 @@ CGI 스크립트 실행을 위해:
 2. `addPipeMap()`은 파이프 FD를 클라이언트 FD와 연결
 3. 파이프에 데이터가 있을 때 `accessClientFd()`는 해당 클라이언트 찾기
 4. CGI 완료 후 `removePipeFromMap()`은 매핑 제거
+
+[메인 README로 돌아가기](../../README.md)
